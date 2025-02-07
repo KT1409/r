@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Rose Day! 🌹</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kite+One&display=swap');
+        
+        body {
+            background-color: #ffdde1; /* Soft blush pink */
+            color: #7a2048; /* Deep wine red */
+            font-family: 'Kite One', sans-serif;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(122, 32, 72, 0.4);
+            z-index: 10;
+        }
+        .countdown {
+            font-size: 28px;
+            margin-top: 20px;
+        }
+        .falling {
+            position: absolute;
+            font-size: 35px;
+            animation: fall linear infinite;
+            top: -50px;
+        }
+        @keyframes fall {
+            from {
+                transform: translateY(-50px);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+        .button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #c70039; /* Rich rose red */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-family: 'Kite One', sans-serif;
+            transition: background 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ff6b81; /* Soft pink */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="message-container">
+        <h1 id="message">Like a rose in bloom, our love grows more beautiful with time! 🌹❤️</h1>
+        <div class="countdown" id="timer"></div>
+        <button class="button" onclick="showRoseDayMessage()">Showering Roses for You! 🌹🎁</button>
+    </div>
+    <script>
+        function createFallingElement(emoji) {
+            let element = document.createElement("div");
+            element.classList.add("falling");
+            element.textContent = emoji;
+            document.body.appendChild(element);
+            
+            let startPos;
+            do {
+                startPos = Math.random() * window.innerWidth;
+            } while (startPos > window.innerWidth * 0.35 && startPos < window.innerWidth * 0.65);
+            
+            let duration = Math.random() * 5 + 3;
+            element.style.left = startPos + "px";
+            element.style.animationDuration = duration + "s";
+            
+            setTimeout(() => { element.remove(); }, duration * 1000);
+        }
+        
+        setInterval(() => createFallingElement("🌹"), 200);
+        
+        function showRoseDayMessage() {
+            document.getElementById("message").innerText = "Happy Rose Day, my Love! 🌹❤️";
+            document.getElementById("timer").remove();
+            document.querySelector(".button").remove();
+            setInterval(() => createFallingElement("✨"), 300);
+        }
+    </script>
+</body>
+</html>
